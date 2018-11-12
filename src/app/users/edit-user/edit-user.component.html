@@ -1,0 +1,134 @@
+<div class="container">
+  <div class="row">
+    <div class="col card">
+      <form class="form-horizontal" (ngSubmit)="save()" [formGroup]="editUserForm">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="firstName">First name*</label>
+            </div>
+            <div class="col-md-12">
+              <input pInputText class="form-control" type="text" id="firstName" placeholder="First name"
+                     autofocus="" required="" formControlName="firstName">
+              <div class="form-message"
+                   *ngIf="(editUserForm.get('firstName').touched || editUserForm.controls['firstName'].dirty) && !editUserForm.controls['firstName'].valid">
+                First name must be at least 3 characters long
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="lastName">Last name*</label>
+            </div>
+            <div class="col-md-12">
+              <input pInputText class="form-control" type="text" id="lastName" placeholder="Last name"
+                     autofocus="" required="" formControlName="lastName">
+              <div class="form-message"
+                   *ngIf="(editUserForm.get('lastName').touched || editUserForm.controls['lastName'].dirty) && !editUserForm.controls['lastName'].valid">
+                Last name must be at least 3 characters long
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <label class="col-sm-12 control-label" for="email">Email*</label>
+            <div class="col-md-12">
+              <input pInputText class="form-control" type="email" name="email" id="email" placeholder="Email"
+                     autofocus="" required="" formControlName="username">
+              <div class="form-message"
+                   *ngIf="(editUserForm.get('username').touched || editUserForm.controls['username'].dirty) && !editUserForm.controls['username'].valid">
+                Email is invalid
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <label class="col-sm-12 control-label" for="password">Password*</label>
+            <div class="col-md-12">
+              <input pPassword class="form-control" type="password" name="password" id="password"
+                     placeholder="Password" required="" formControlName="password">
+              <div class="form-message"
+                   *ngIf="(editUserForm.get('password').touched || editUserForm.controls['password'].dirty) && !editUserForm.controls['password'].valid">
+                Last name must be at least 5 characters long
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <label class="col-sm-12 control-label">Mobile number</label>
+            <div class="col-md-12">
+              <input pInputText formControlName="mobileNumber" id="mobileNumber" class="w-100">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <label class="col-sm-12 control-label">Date of birth</label>
+            <div class="col-md-12">
+              <p-calendar formControlName="dob" dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <label class="col-sm-12 control-label" for="street">Street</label>
+                <div class="col-md-12">
+                  <input pInputText formControlName="street" id="street" class="w-100">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <label class="col-sm-12 control-label" for="city">City</label>
+                <div class="col-md-12">
+                  <input pInputText formControlName="city" id="city" class="w-100">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <label class="col-sm-12 control-label" for="state">State</label>
+                <div class="col-md-12">
+                  <input pInputText formControlName="state" id="state" class="w-100">
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <label class="col-sm-12 control-label" for="zip">Zip</label>
+                <div class="col-md-12">
+                  <input pInputText formControlName="zip" id="zip" class="w-100">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-rounded btn-primary btn-block" [disabled]="!editUserForm.valid">
+              Update
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+

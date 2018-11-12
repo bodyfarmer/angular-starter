@@ -1,0 +1,131 @@
+<p-dialog header="Add User" [(visible)]="display">
+  <div>
+    <div class="container no-padding">
+      <div class="row">
+        <div class="col">
+          <p-growl [(value)]="msgs"></p-growl>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form class="form-horizontal" (ngSubmit)="onSignUp()" [formGroup]="newUserForm">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="firstName">First name*</label>
+                </div>
+                <div class="col-md-12">
+                  <input pInputText class="form-control" type="text" id="firstName" placeholder="First name"
+                         autofocus="" required="" formControlName="firstName">
+                  <div class="form-message"
+                       *ngIf="(newUserForm.get('firstName').touched || newUserForm.controls['firstName'].dirty) && !newUserForm.controls['firstName'].valid">
+                    First name must be at least 3 characters long
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="lastName">Last name*</label>
+                </div>
+                <div class="col-md-12">
+                  <input pInputText class="form-control" type="text" id="lastName" placeholder="Last name"
+                         autofocus="" required="" formControlName="lastName">
+                  <div class="form-message"
+                       *ngIf="(newUserForm.get('lastName').touched || newUserForm.controls['lastName'].dirty) && !newUserForm.controls['lastName'].valid">
+                    Last name must be at least 3 characters long
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <label class="col-sm-12 control-label" for="email">Email*</label>
+                <div class="col-md-12">
+                  <input pInputText class="form-control" type="email" name="email" id="email" placeholder="Email"
+                         autofocus="" required="" formControlName="username">
+                  <div class="form-message"
+                       *ngIf="(newUserForm.get('username').touched || newUserForm.controls['username'].dirty) && !newUserForm.controls['username'].valid">
+                    Email is invalid
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <label class="col-sm-12 control-label" for="password">Password*</label>
+                <div class="col-md-12">
+                  <input pPassword class="form-control" type="password" name="password" id="password"
+                         placeholder="Password" required="" formControlName="password">
+                  <div class="form-message"
+                       *ngIf="(newUserForm.get('password').touched || newUserForm.controls['password'].dirty) && !newUserForm.controls['password'].valid">
+                    Last name must be at least 5 characters long
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-rounded btn-primary btn-block" [disabled]="!newUserForm.valid">
+                  Add
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+<div class="container-fluid">
+  <a (click)="showDialog()" class="btn btn-success btn-sm" role="button" aria-pressed="true"><i class="fas fa-user-plus"></i>
+    Add User</a>
+
+  <div class="row" style="padding:15px; margin-top: 15px; font-weight: bold;">
+    <div class="col-1">
+      Photo
+    </div>
+    <div class="col-md-7">
+      Details
+    </div>
+    <div class="col-2">
+      Actions
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: pageNum, totalItems: count }"
+         class="col-md-12" style="margin-bottom:10px;">
+      <div class="row" style="padding:15px; border: 1px solid #efefef; margin-top: 10px;">
+        <div class="col-md-1 no-padding">
+          <img src="http://via.placeholder.com/750x450" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-7">
+          <p> {{user.firstName}} {{user.lastName}}<br>
+            <a href="mailto:{{user.username}}">{{user.username}}</a></p>
+        </div>
+        <div class="col-md-4">
+          <button type="button" [routerLink]="['/dashboard/manage-users/user-detail', user._id]" class="btn btn-primary btn-sm">
+            <i class="far fa-eye"></i> View
+          </button>&nbsp;
+          <button type="button" [routerLink]="['/users/user-detail', user._id, 'edit']" class="btn btn-warning btn-sm">
+            <i class="far fa-edit"></i> Edit
+          </button>&nbsp;
+          <button type="button" (click)="onDelete(user)" class="btn btn-danger btn-sm">
+            <i class="far fa-trash-alt"></i> Delete
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+
+</div>

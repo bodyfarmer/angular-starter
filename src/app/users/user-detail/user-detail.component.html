@@ -1,0 +1,16 @@
+<div *ngIf='user' class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <img src="http://via.placeholder.com/750x450" class="img-fluid" alt="">
+      <h3>{{user.lastName}} {{user.firstName}}</h3>
+
+      <strong>Email:</strong> <a href="mailto:{{user.username}}">{{user.username}}</a><br>
+      <strong>Role:</strong> {{user.roles[0]}}<br>
+      <strong>Phone:</strong> <a href="tel:{{user.mobileNumber}}">{{user.mobileNumber}}</a><br>
+      <strong>Address:</strong> {{user.street}}<br>
+      {{user.city}} {{user.state}} {{user.zip}}
+      <strong>Date of birth:</strong>
+      {{user.dob | amDateFormat:'LL'}}
+    </div>
+  </div>
+</div>

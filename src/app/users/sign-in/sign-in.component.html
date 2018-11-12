@@ -1,0 +1,81 @@
+<div class="bg--gray h-100">
+  <div class="container">
+    <div class="row ">
+      <div class="col">
+        <p-messages [(value)]="msgs"></p-messages>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 offset-4 card card--login">
+        <h5 class="card-title">Login</h5>
+
+        <form class="form-horizontal" novalidate (ngSubmit)="onSignIn()" [formGroup]="signInForm">
+
+          <div class="form-group"
+               [ngClass]="{'has-error': (signInForm.get('username').touched || signInForm.get('username').dirty) && !signInForm.get('username').valid }">
+            <div class="row">
+              <label class="col-md-12 control-label"
+                     for="usernameId">Email*</label>
+
+              <div class="col-md-12">
+                <input class="form-control"
+                       id="usernameId"
+                       placeholder="Email (required)"
+                       formControlName="username">
+
+                <span class="form-message"
+                      *ngIf="(signInForm.get('username').touched || signInForm.get('username').dirty) && signInForm.get('username').errors">
+                            <span *ngIf="signInForm.get('username').errors.required">
+                                Please enter your email.
+                            </span>
+                             <span *ngIf="signInForm.controls.username.errors.maxlength">
+                                The email must be at least 5 characters.
+                            </span>
+                       </span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group"
+               [ngClass]="{'has-error': (signInForm.get('password').touched || signInForm.get('password').dirty) && !signInForm.get('password').valid }">
+
+            <div class="row">
+              <label class="col-md-12 control-label"
+                     for="passwordId">Password*</label>
+
+              <div class="col-md-12">
+                <input class="form-control"
+                       type="password"
+                       id="passwordId"
+                       placeholder="Password (required)"
+                       formControlName="password">
+
+                <span class="form-message"
+                      *ngIf="(signInForm.get('password').touched || signInForm.get('password').dirty) && signInForm.get('password').errors">
+                            <span *ngIf="signInForm.get('password').errors.required">
+                                Please enter your password.
+                            </span>
+                             <span *ngIf="signInForm.controls.password.errors.maxlength">
+                                The email must be at least 5 characters.
+                            </span>
+                       </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-rounded btn-primary btn-block" [disabled]="!signInForm.valid">
+                Login
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
