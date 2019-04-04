@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIEndpoint: 'https://moblize-demo.appspot.com/api',
+  APIEndpoint: 'http://localhost:8080/api',
 };
 
 /*
